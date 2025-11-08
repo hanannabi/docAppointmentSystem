@@ -1,5 +1,7 @@
 package com.example.mockitoJunit.controller;
 
+import com.example.mockitoJunit.dto.AppointmentCountResponse;
+import com.example.mockitoJunit.dto.DoctorCountRequest;
 import com.example.mockitoJunit.dto.Request;
 import com.example.mockitoJunit.dto.Response;
 import com.example.mockitoJunit.service.DoctorService;
@@ -18,9 +20,17 @@ public class DoctorController {
     private DoctorService doctorService;
 
     @PostMapping("/doctor")
-    public Response addDoctor(@RequestBody Request request ){
+    public Response addDoctor(@RequestBody Request request) {
         Response response = doctorService.addDoctor(request);
         return response;
+    }
+
+    @PostMapping("/appointment/count")
+    public AppointmentCountResponse countAppointments(@RequestBody DoctorCountRequest doctorCountRequest) {
+
+        AppointmentCountResponse appointmentCountResponse = doctorService.countAppointments(doctorCountRequest);
+        return appointmentCountResponse;
+
     }
 
 }
